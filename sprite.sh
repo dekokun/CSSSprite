@@ -36,8 +36,9 @@ for new_icon in $directory/*; do
       cp -p $new_icon $new_icon_map
       is_first=false
     else
-      convert -append $new_icon_map $new_icon $new_icon_map
-      sleep 1
+      tmp_file=`mktemp temp.XXXX`
+      convert -append $new_icon_map $new_icon $tmp_file
+      mv $tmp_file $new_icon_map
     fi
     id_name=`basename $new_icon | sed -e's/_//' | cut -d'.' -f1`
     icon_height=`identify -format "%h" $new_icon`
