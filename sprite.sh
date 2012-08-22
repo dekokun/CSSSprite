@@ -21,6 +21,7 @@ fi
 
 bin_dir=`dirname $0`
 result_dir=$bin_dir/result
+tmp_dir=$bin_dir/tmp
 
 directory=$1
 joined_image_base=$2
@@ -43,7 +44,7 @@ for new_icon in $directory/*; do
       cp -p $new_icon $joined_image
       is_first=false
     else
-      tmp_file=`mktemp temp.XXXX`
+      tmp_file=`mktemp $tmp_dir/temp.XXXX`
       convert -append $joined_image $new_icon $tmp_file
       mv $tmp_file $joined_image
     fi
