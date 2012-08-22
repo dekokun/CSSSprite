@@ -61,3 +61,7 @@ for new_icon in $directory/*; do
     now_height=`expr $now_height + $icon_height`
   fi
 done
+
+echo joined image : $joined_image
+echo css example  : $css
+echo html example : $html
