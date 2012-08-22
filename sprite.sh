@@ -20,7 +20,7 @@ if [ -z "$1" -o -z "$2" ]; then
 fi
 
 bin_dir=`dirname $0`
-result_dir=$bin_dir/result
+result_dir=`mktemp -d $bin_dir/result/XXXXXXX`
 tmp_dir=$bin_dir/tmp
 
 directory=$1
