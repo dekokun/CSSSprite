@@ -30,8 +30,6 @@ joined_image=$result_dir/$joined_image_base
 css_base="sprite_`basename $directory`.css"
 css=$result_dir/$css_base
 html="$result_dir/sprite_`basename $directory`.html"
-rm -f $css
-rm -f $html
 echo "<link rel=\"stylesheet\" href=\"$css_base\" />" > $html
 
 now_height=0
