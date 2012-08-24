@@ -25,6 +25,11 @@ tmp_dir=$bin_dir/tmp
 
 directory=$1
 joined_image_base=$2
+if [ -n "$3" ]; then
+  class=$3
+  spaced_class=" $class"
+  dotted_class=".$class"
+fi
 joined_image=$result_dir/$joined_image_base
 
 css_base="sprite_`basename $directory`.css"
@@ -49,14 +54,14 @@ for new_icon in $directory/*; do
     id_name=`basename $new_icon | sed -e's/_//' | cut -d'.' -f1`
     icon_height=`identify -format "%h" $new_icon`
     icon_width=`identify -format "%w" $new_icon`
-    (echo "div.sprite-$id_name {"
+    (echo "div.sprite-$id_name$dotted_class {"
     echo "      width: ${icon_height}px;"
     echo "      height: ${icon_width}px;"
     echo "      background-image: url(\"$joined_image_base\");"
     echo "      background-repeat: no-repeat;"
     echo "      background-position: 0 -${now_height}px;"
     echo "}") >> $css
-    echo "<div class=\"sprite-$id_name\"></div>" >> $html
+    echo "<div class=\"sprite-$id_name$spaced_class\"></div>" >> $html
     now_height=`expr $now_height + $icon_height`
   fi
 done
